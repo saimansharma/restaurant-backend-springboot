@@ -226,9 +226,7 @@ public class UserServiceImpl implements UserService{
         String to = user.getEmail();
         String subject = "Account Verification";
         String content = "Dear [[name]],<br>" +
-        "Please click the link below to verify your registration:<br>" +
-                "<h3><a href=\"[[URL]]\" target=\"_self\">VERIFY</a></h3>" +
-                "<br>Or enter the following OTP in the verification page:<br>" +
+                "Enter the following OTP in the verification page:<br>" +
                 "<h3>[[OTP]]</h3>" +
                 "Thank you,<br>" +
                 "Gericht Restaurant";
