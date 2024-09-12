@@ -21,12 +21,8 @@ public class JWTUtils {
     private  static  final long ACCESS_TOKEN_EXPIRATION_TIME = 3600000;  //1 hour 1 min
     private  static  final long REFRESH_TOKEN_EXPIRATION_TIME = 86400000; //24 hour 5 min
 
-    @Value("${mytoken}")
-    private String token;
-
-    public JWTUtils(){
-        String secreteString = token;
-        byte[] keyBytes = Base64.getDecoder().decode(secreteString.getBytes(StandardCharsets.UTF_8));
+    public JWTUtils(@Value("${mytoken}") String token){
+        byte[] keyBytes = Base64.getDecoder().decode(token.getBytes(StandardCharsets.UTF_8));
         this.Key = new SecretKeySpec(keyBytes, "HmacSHA256");
     }
 
