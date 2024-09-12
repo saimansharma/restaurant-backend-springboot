@@ -13,6 +13,14 @@ jobs:
   build:
     runs-on: windows-latest
 
+    env:
+          DB_URL: ${{ secrets.DB_URL }}
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+          MY_TOKEN: ${{ secrets.MY_TOKEN }}
+          AD_PASSWORD: ${{ secrets.AD_PASSWORD }}
+
     steps:
       - uses: actions/checkout@v4
 
@@ -23,15 +31,7 @@ jobs:
           distribution: 'microsoft'
 
       - name: Build with Maven
-      env:
-          DB_URL: ${{ secrets.DB_URL }}
-          DB_USERNAME: ${{ secrets.DB_USERNAME }}
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
-          MY_TOKEN: ${{ secrets.MY_TOKEN }}
-          AD_PASSWORD: ${{ secrets.AD_PASSWORD }}
         run: mvn clean install
-        
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
